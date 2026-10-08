@@ -8,9 +8,13 @@ import java.time.LocalDate;
 
 @Entity
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
-@ToString(callSuper = true) @FieldDefaults(level = AccessLevel.PRIVATE)
-@AttributeOverride(name = "id", column = @Column(name = "id_paiement"))
-public class Paiement extends BaseEntity {
+@ToString @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class Paiement {
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE) @EqualsAndHashCode.Include
+    Long idPaiement;
 
     @Column(nullable = false, precision = 10, scale = 2)
     BigDecimal montant;

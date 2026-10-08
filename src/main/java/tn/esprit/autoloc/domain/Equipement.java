@@ -6,9 +6,13 @@ import lombok.experimental.FieldDefaults;
 
 @Entity
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
-@ToString(callSuper = true) @FieldDefaults(level = AccessLevel.PRIVATE)
-@AttributeOverride(name = "id", column = @Column(name = "id_equipement"))
-public class Equipement extends BaseEntity {
+@ToString @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class Equipement {
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE) @EqualsAndHashCode.Include
+    Long idEquipement;
 
     @Column(nullable = false, unique = true, length = 100)
     String libelle;

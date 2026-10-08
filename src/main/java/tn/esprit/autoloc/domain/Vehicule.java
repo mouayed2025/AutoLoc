@@ -7,9 +7,13 @@ import java.math.BigDecimal;
 
 @Entity
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
-@ToString(callSuper = true) @FieldDefaults(level = AccessLevel.PRIVATE)
-@AttributeOverride(name = "id", column = @Column(name = "id_vehicule"))
-public class Vehicule extends BaseEntity {
+@ToString @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class Vehicule {
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE) @EqualsAndHashCode.Include
+    Long idVehicule;
 
     @Column(nullable = false, unique = true, length = 20)
     String immatriculation;

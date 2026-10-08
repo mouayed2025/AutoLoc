@@ -7,14 +7,18 @@ import java.time.LocalDate;
 
 @Entity
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
-@ToString(callSuper = true) @FieldDefaults(level = AccessLevel.PRIVATE)
-@AttributeOverride(name = "id", column = @Column(name = "id_maintenance"))
-public class Maintenance extends BaseEntity {
+@ToString @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class Maintenance {
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE) @EqualsAndHashCode.Include
+    Long idMaintenance;
 
     @Column(nullable = false)
     LocalDate dateDebut;
 
-    LocalDate dateFin; // nulle tant que la maintenance est en cours
+    LocalDate dateFin;
 
     @Column(length = 500)
     String description;
