@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 @ToString @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -16,4 +19,7 @@ public class Equipement {
 
     @Column(nullable = false, unique = true, length = 100)
     String libelle;
+
+    @ManyToMany(mappedBy = "equipements", fetch = FetchType.LAZY)
+    private Set<Vehicule> vehicules = new HashSet<>();
 }
