@@ -26,11 +26,14 @@ public class Reservation {
     StatutReservation statut;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private Client client;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private Vehicule vehicule;
 
     @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ToString.Exclude
     private Contrat contrat;
 }

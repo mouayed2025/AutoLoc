@@ -25,5 +25,6 @@ public class Employe {
     RoleEmploye role;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private Agence agence;
 }

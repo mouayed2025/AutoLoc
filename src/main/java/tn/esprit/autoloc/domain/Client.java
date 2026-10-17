@@ -36,5 +36,6 @@ public class Client {
     LocalDate dateInscription;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @ToString.Exclude
     private List<Reservation> reservations = new ArrayList<>();
 }

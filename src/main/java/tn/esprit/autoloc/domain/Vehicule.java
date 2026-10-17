@@ -40,6 +40,7 @@ public class Vehicule {
     StatutVehicule statut;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private Agence agence;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -48,8 +49,10 @@ public class Vehicule {
             joinColumns = @JoinColumn(name = "id_vehicule"),
             inverseJoinColumns = @JoinColumn(name = "id_equipement")
     )
+    @ToString.Exclude
     private Set<Equipement> equipements = new HashSet<>();
 
     @OneToMany(mappedBy = "vehicule", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @ToString.Exclude
     private List<Maintenance> maintenances = new ArrayList<>();
 }

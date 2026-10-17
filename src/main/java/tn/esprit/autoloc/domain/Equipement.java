@@ -21,5 +21,6 @@ public class Equipement {
     String libelle;
 
     @ManyToMany(mappedBy = "equipements", fetch = FetchType.LAZY)
+    @ToString.Exclude
     private Set<Vehicule> vehicules = new HashSet<>();
 }

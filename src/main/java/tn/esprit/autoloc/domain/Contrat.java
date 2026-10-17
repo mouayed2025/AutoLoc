@@ -27,8 +27,10 @@ public class Contrat {
     boolean valide;
 
     @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.LAZY)
+    @ToString.Exclude
     private List<Paiement> paiements = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private Reservation reservation;
 }

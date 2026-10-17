@@ -24,5 +24,6 @@ public class Maintenance {
     String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private Vehicule vehicule;
 }

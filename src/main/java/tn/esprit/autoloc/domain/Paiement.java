@@ -27,5 +27,6 @@ public class Paiement {
     ModePaiement modePaiement;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private Contrat contrat;
 }

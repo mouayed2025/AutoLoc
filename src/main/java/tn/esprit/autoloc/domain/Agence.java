@@ -30,8 +30,10 @@ public class Agence {
     String telephone;
 
     @OneToMany(mappedBy = "agence", fetch = FetchType.LAZY)
+    @ToString.Exclude
     private List<Vehicule> vehicules = new ArrayList<>();
 
     @OneToMany(mappedBy = "agence", fetch = FetchType.LAZY)
+    @ToString.Exclude
     private List<Employe> employes = new ArrayList<>();
 }

@@ -28,13 +28,13 @@
   Charger un objet chargerait alors toute une chaîne d'objets liés, même inutiles.
 - Avec LAZY, une lecture reste légère et on ne charge que ce dont on a besoin.
 
-## 4. Règles retenues
+## 4.Règles retenues
 
-1. **Cascade seulement pour une composition** : l'enfant ne peut pas vivre sans son parent
+1. Cascade seulement pour une composition : l'enfant ne peut pas vivre sans son parent
    (exemple : Paiement et Contrat).
-2. **Pas de cascade de suppression** quand l'enfant existe de façon indépendante
+2. Pas de cascade de suppression quand l'enfant existe de façon indépendante
    (exemple : Vehicule et Agence).
-3. **Le côté propriétaire** est le côté @ManyToOne : c'est lui qui porte la clé étrangère
+3. Le côté propriétaire est le côté @ManyToOne : c'est lui qui porte la clé étrangère
    en base. Le côté inverse utilise mappedBy et ne crée aucune colonne.
-4. **Pas de @Data** sur les entités liées : risque de StackOverflowError.
+4. Pas de @Data sur les entités liées : risque de StackOverflowError.
    On utilise @Getter, @Setter, @NoArgsConstructor et @AllArgsConstructor.
