@@ -11,4 +11,6 @@ public interface IVehiculeService {
     void deleteById(Long id);
     VehiculeDto affecterAgence(Long idVehicule, Long idAgence);
     VehiculeDto affecterEquipement(Long idVehicule, Long idEquipement);
+    List<VehiculeDto> findByIdContrat(Long idContrat);
+    List<VehiculeDto> findByIdMaintenance(Long idMaintenance);
 }

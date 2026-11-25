@@ -81,4 +81,14 @@ public class MaintenanceController {
             @Parameter(description = "Identifiant du véhicule") @PathVariable Long idVehicule) {
         return maintenanceService.affecterVehicule(idMaintenance, idVehicule);
     }
+
+    // Atelier7
+    @Operation(summary = "Lister les maintenances d'un véhicule")
+    @ApiResponse(responseCode = "200", description = "Liste des maintenances du véhicule")
+    @ApiResponse(responseCode = "404", description = "Véhicule introuvable")
+    @GetMapping("/vehicule/{idVehicule}")
+    public List<MaintenanceDto> findByIdVehicule(
+            @Parameter(description = "Identifiant du véhicule") @PathVariable Long idVehicule) {
+        return maintenanceService.findByIdVehicule(idVehicule);
+    }
 }

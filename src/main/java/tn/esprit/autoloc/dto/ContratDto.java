@@ -37,6 +37,6 @@ public class ContratDto {
     @Valid
     private List<PaiementDto> paiements = new ArrayList<>();
 
-    @Schema(accessMode = Schema.AccessMode.READ_ONLY, description = "Réservation liée au contrat")
+    @Schema(description = "Identifiant de la réservation liée (facultatif, pris en compte à la création)", example = "1")
     private Long idReservation;
 }

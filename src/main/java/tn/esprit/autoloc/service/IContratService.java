@@ -9,4 +9,5 @@ public interface IContratService {
     List<ContratDto> findAll();
     ContratDto update(Long id, ContratDto contratDto);
     void deleteById(Long id);
+    List<ContratDto> findByIdVehicule(Long idVehicule);
 }

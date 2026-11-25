@@ -83,6 +83,15 @@ public class MaintenanceServiceImpl implements IMaintenanceService {
                 .orElseThrow(() -> new ResourceNotFoundException("Maintenance", id));
     }
 
+    // Atelier7 : liste des maintenances d'un véhicule
+    @Override
+    public List<MaintenanceDto> findByIdVehicule(Long idVehicule) {
+        getVehicule(idVehicule); // 404 si le véhicule n'existe pas
+        return maintenanceRepository.findByVehiculeIdVehicule(idVehicule).stream()
+                .map(mapper::toDto)
+                .toList();
+    }
+
     private Vehicule getVehicule(Long idVehicule) {
         return vehiculeRepository.findById(idVehicule)
                 .orElseThrow(() -> new ResourceNotFoundException("Véhicule", idVehicule));

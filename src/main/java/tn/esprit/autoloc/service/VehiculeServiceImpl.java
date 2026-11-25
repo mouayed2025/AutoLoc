@@ -11,7 +11,9 @@ import tn.esprit.autoloc.dto.VehiculeDto;
 import tn.esprit.autoloc.exception.ResourceNotFoundException;
 import tn.esprit.autoloc.mapper.IMapper;
 import tn.esprit.autoloc.repository.IAgenceRepository;
+import tn.esprit.autoloc.repository.IContratRepository;
 import tn.esprit.autoloc.repository.IEquipementRepository;
+import tn.esprit.autoloc.repository.IMaintenanceRepository;
 import tn.esprit.autoloc.repository.IVehiculeRepository;
 
 @Service
@@ -21,6 +23,8 @@ public class VehiculeServiceImpl implements IVehiculeService {
     private final IVehiculeRepository vehiculeRepository;
     private final IAgenceRepository agenceRepository;
     private final IEquipementRepository equipementRepository;
+    private final IContratRepository contratRepository;
+    private final IMaintenanceRepository maintenanceRepository;
     private final IMapper mapper;
 
     @Override
@@ -90,6 +94,28 @@ public class VehiculeServiceImpl implements IVehiculeService {
         // Côté inverse mis à jour pour garder les deux côtés cohérents en mémoire.
         equipement.getVehicules().add(vehicule);
         return mapper.toDto(vehiculeRepository.save(vehicule));
+    }
+
+    // Atelier7 : liste des véhicules d'un contrat
+    @Override
+    public List<VehiculeDto> findByIdContrat(Long idContrat) {
+        if (!contratRepository.existsById(idContrat)) {
+            throw new ResourceNotFoundException("Contrat", idContrat);
+        }
+        return vehiculeRepository.findVehiculesByIdContrat(idContrat).stream()
+                .map(mapper::toDto)
+                .toList();
+    }
+
+    // Atelier7 : liste des véhicules d'une maintenance
+    @Override
+    public List<VehiculeDto> findByIdMaintenance(Long idMaintenance) {
+        if (!maintenanceRepository.existsById(idMaintenance)) {
+            throw new ResourceNotFoundException("Maintenance", idMaintenance);
+        }
+        return vehiculeRepository.findByMaintenancesIdMaintenance(idMaintenance).stream()
+                .map(mapper::toDto)
+                .toList();
     }
 
     private Vehicule getVehicule(Long id) {

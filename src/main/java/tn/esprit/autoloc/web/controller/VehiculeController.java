@@ -90,4 +90,24 @@ public class VehiculeController {
             @Parameter(description = "Identifiant de l'équipement") @PathVariable Long idEquipement) {
         return vehiculeService.affecterEquipement(idVehicule, idEquipement);
     }
+
+    // Atelier7
+    @Operation(summary = "Lister les véhicules d'un contrat")
+    @ApiResponse(responseCode = "200", description = "Liste des véhicules du contrat")
+    @ApiResponse(responseCode = "404", description = "Contrat introuvable")
+    @GetMapping("/contrat/{idContrat}")
+    public List<VehiculeDto> findByIdContrat(
+            @Parameter(description = "Identifiant du contrat") @PathVariable Long idContrat) {
+        return vehiculeService.findByIdContrat(idContrat);
+    }
+
+    // Atelier7
+    @Operation(summary = "Lister les véhicules d'une maintenance")
+    @ApiResponse(responseCode = "200", description = "Liste des véhicules de la maintenance")
+    @ApiResponse(responseCode = "404", description = "Maintenance introuvable")
+    @GetMapping("/maintenance/{idMaintenance}")
+    public List<VehiculeDto> findByIdMaintenance(
+            @Parameter(description = "Identifiant de la maintenance") @PathVariable Long idMaintenance) {
+        return vehiculeService.findByIdMaintenance(idMaintenance);
+    }
 }
