@@ -1,5 +1,6 @@
 package tn.esprit.autoloc.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -25,7 +26,7 @@ public class Contrat {
     BigDecimal montantTotal;
 
     boolean valide;
-
+    @JsonManagedReference("contrat-paiements")
     @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<Paiement> paiements = new ArrayList<>();
